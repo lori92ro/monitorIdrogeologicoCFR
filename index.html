@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +13,22 @@
             padding: 20px;
             background-color: #f5f5f5;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background-color: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             color: #003366;
             text-align: center;
             margin-bottom: 20px;
         }
+
         .grafico {
             margin-bottom: 30px;
             border: 1px solid #ddd;
@@ -32,61 +36,111 @@
             padding: 10px;
             background-color: white;
         }
+
         .grafico h2 {
             color: #003366;
             font-size: 18px;
             margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
+        .grafico h2 button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .grafico h2 button:hover {
+            background-color: #004d99;
+        }
+
         iframe {
             width: 100%;
             height: 500px;
             border: none;
         }
+
         .footer {
             text-align: center;
             margin-top: 20px;
             color: #666;
             font-size: 14px;
         }
+
         .last-update {
             text-align: right;
             color: #666;
             font-size: 14px;
             margin-top: 10px;
         }
+
+        #preferito {
+            background-color: #f0f8ff;
+            border: 2px solid #003366;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Monitoraggio Idrologico Regione Toscana</h1>
-        
-        <div class="grafico">
-            <h2>Grafico 1: Ombrone PT a Pontelungo valle - Pistoia (PT)</h2>
-            <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS01004839&title=&type=idro" title="Ombrone PT a Pontelungo valle"></iframe>
+
+        <div id="graficoPreferito"></div>
+
+        <div class="grafico" id="grafico1" data-id="TOS01004839"
+            data-title="Ombrone PT a Pontelungo valle - Pistoia (PT)">
+            <h2>
+                Grafico 1: Ombrone PT a Pontelungo valle - Pistoia (PT)
+                <button onclick="impostaPreferito('grafico1')">Imposta come preferito</button>
+            </h2>
+            <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS01004839&title=&type=idro"
+                title="Ombrone PT a Pontelungo valle"></iframe>
         </div>
-        
-        <div class="grafico">
-            <h2>Grafico 2: Monitoraggio stazione TOS03004871</h2>
-            <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS03004871&title=&type=idro" title="Monitoraggio stazione TOS03004871"></iframe>
+
+        <div class="grafico" id="grafico2" data-id="TOS03004871" data-title="Monitoraggio stazione TOS03004871">
+            <h2>
+                Grafico 2: Monitoraggio stazione TOS03004871
+                <button onclick="impostaPreferito('grafico2')">Imposta come preferito</button>
+            </h2>
+            <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS03004871&title=&type=idro"
+                title="Monitoraggio stazione TOS03004871"></iframe>
         </div>
-        
-        <div class="grafico">
-            <h2>Grafico 3: Monitoraggio stazione TOS01004875</h2>
-            <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS01004875&title=&type=idro" title="Monitoraggio stazione TOS01004875"></iframe>
+
+        <div class="grafico" id="grafico3" data-id="TOS01004875" data-title="Monitoraggio stazione TOS01004875">
+            <h2>
+                Grafico 3: Monitoraggio stazione TOS01004875
+                <button onclick="impostaPreferito('grafico3')">Imposta come preferito</button>
+            </h2>
+            <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS01004875&title=&type=idro"
+                title="Monitoraggio stazione TOS01004875"></iframe>
         </div>
-        
-        <div class="grafico">
-            <h2>Grafico 4: Monitoraggio stazione TOS15004682</h2>
-            <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS15004682&title=&type=idro" title="Monitoraggio stazione TOS15004682"></iframe>
+
+        <div class="grafico" id="grafico4" data-id="TOS15004682" data-title="Monitoraggio stazione TOS15004682">
+            <h2>
+                Grafico 4: Monitoraggio stazione TOS15004682
+                <button onclick="impostaPreferito('grafico4')">Imposta come preferito</button>
+            </h2>
+            <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS15004682&title=&type=idro"
+                title="Monitoraggio stazione TOS15004682"></iframe>
         </div>
-        
-        <div class="grafico">
-            <h2>Grafico 5: Monitoraggio stazione TOS01004811</h2>
-            <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS01004811&title=&type=idro" title="Monitoraggio stazione TOS01004811"></iframe>
+
+        <div class="grafico" id="grafico5" data-id="TOS01004811" data-title="Monitoraggio stazione TOS01004811">
+            <h2>
+                Grafico 5: Monitoraggio stazione TOS01004811
+                <button onclick="impostaPreferito('grafico5')">Imposta come preferito</button>
+            </h2>
+            <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS01004811&title=&type=idro"
+                title="Monitoraggio stazione TOS01004811"></iframe>
         </div>
-        
+
         <p class="last-update">Ultimo aggiornamento: <span id="currentDate"></span></p>
-        
+
         <div class="footer">
             <p>Dati forniti dal Centro Funzionale Regione Toscana</p>
             <p>Fonte: <a href="https://cfr.toscana.it" target="_blank">cfr.toscana.it</a></p>
@@ -97,23 +151,23 @@
         // Aggiorna la data e l'ora correnti
         function updateDateTime() {
             const now = new Date();
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
                 day: 'numeric',
                 hour: '2-digit',
                 minute: '2-digit'
             };
             document.getElementById('currentDate').textContent = now.toLocaleDateString('it-IT', options);
         }
-        
+
         // Inizializza la data e l'ora
         updateDateTime();
-        
+
         // Aggiorna ogni minuto
         setInterval(updateDateTime, 60000);
-        
+
         // Mostra il timer per il prossimo aggiornamento
         let secondsUntilRefresh = 900; // 15 minuti
         const timerElement = document.createElement('div');
@@ -123,21 +177,79 @@
         timerElement.style.fontSize = '14px';
         timerElement.style.color = '#666';
         document.querySelector('.footer').appendChild(timerElement);
-        
+
         function updateRefreshTimer() {
             const minutes = Math.floor(secondsUntilRefresh / 60);
             const seconds = secondsUntilRefresh % 60;
             timerElement.textContent = `Prossimo aggiornamento automatico tra: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
             secondsUntilRefresh--;
-            
+
             if (secondsUntilRefresh < 0) {
                 secondsUntilRefresh = 900;
             }
         }
-        
+
         // Inizializza e aggiorna il timer ogni secondo
         updateRefreshTimer();
         setInterval(updateRefreshTimer, 1000);
+
+        // Gestione del grafico preferito
+        function impostaPreferito(graficoId) {
+            // Salva la preferenza nel localStorage
+            localStorage.setItem('graficoPreferito', graficoId);
+
+            // Aggiorna la visualizzazione
+            mostraGraficoPreferito();
+        }
+
+        function mostraGraficoPreferito() {
+            // Ottieni l'ID del grafico preferito dal localStorage
+            const graficoId = localStorage.getItem('graficoPreferito');
+
+            // Se non c'è un grafico preferito, non fare nulla
+            if (!graficoId) {
+                document.getElementById('graficoPreferito').innerHTML = '';
+                return;
+            }
+
+            // Ottieni il grafico originale
+            const graficoOriginale = document.getElementById(graficoId);
+
+            if (!graficoOriginale) return;
+
+            // Ottieni i dati del grafico
+            const id = graficoOriginale.dataset.id;
+            const titolo = graficoOriginale.dataset.title;
+
+            // Crea il contenuto del grafico preferito
+            const preferito = `
+                <div class="grafico" id="preferito">
+                    <h2>
+                        Preferito: ${titolo}
+                        <button onclick="rimuoviPreferito()">Rimuovi dai preferiti</button>
+                    </h2>
+                    <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=${id}&title=&type=idro" title="${titolo}"></iframe>
+                </div>
+            `;
+
+            // Inserisci il grafico preferito
+            document.getElementById('graficoPreferito').innerHTML = preferito;
+        }
+
+        function rimuoviPreferito() {
+            // Rimuovi la preferenza dal localStorage
+            localStorage.removeItem('graficoPreferito');
+
+            // Aggiorna la visualizzazione
+            document.getElementById('graficoPreferito').innerHTML = '';
+        }
+
+        // Inizializza mostrando il grafico preferito (se presente)
+        document.addEventListener('DOMContentLoaded', function () {
+            mostraGraficoPreferito();
+        });
+    </script>
     </script>
 </body>
+
 </html>
