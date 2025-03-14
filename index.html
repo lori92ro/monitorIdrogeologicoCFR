@@ -84,6 +84,24 @@
             background-color: #f0f8ff;
             border: 2px solid #003366;
         }
+
+        .livelli-allerta {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .allerta1 {
+            color: #ff9900;
+            font-weight: bold;
+        }
+
+        .allerta2 {
+            color: #cc0000;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -96,16 +114,20 @@
         <div class="grafico" id="grafico1" data-id="TOS01004839"
             data-title="Ombrone PT a Pontelungo valle - Pistoia (PT)">
             <h2>
-                Grafico 1: Ombrone PT a Pontelungo valle - Pistoia (PT)
+                Monitoraggio stazione TOS01004839 (Ombrone PT a Pontelungo valle - Pistoia PT )
                 <button onclick="impostaPreferito('grafico1')">Imposta come preferito</button>
             </h2>
+            <div class="livelli-allerta">
+                <strong>Livelli di allerta:</strong> Allerta 1: <span class="allerta1">2.00 m</span>; Allerta 2: <span
+                    class="allerta2">2.80 m</span>
+            </div>
             <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS01004839&title=&type=idro"
                 title="Ombrone PT a Pontelungo valle"></iframe>
         </div>
 
         <div class="grafico" id="grafico2" data-id="TOS03004871" data-title="Monitoraggio stazione TOS03004871">
             <h2>
-                Grafico 2: Monitoraggio stazione TOS03004871
+                Monitoraggio stazione TOS03004871 (Ombrone Pistoiese a Quarrata)
                 <button onclick="impostaPreferito('grafico2')">Imposta come preferito</button>
             </h2>
             <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS03004871&title=&type=idro"
@@ -114,27 +136,39 @@
 
         <div class="grafico" id="grafico3" data-id="TOS01004875" data-title="Monitoraggio stazione TOS01004875">
             <h2>
-                Grafico 3: Monitoraggio stazione TOS01004875
+                Monitoraggio stazione TOS01004875 (Ombrone Pistoiese a Poggio a Caiano PO)
                 <button onclick="impostaPreferito('grafico3')">Imposta come preferito</button>
             </h2>
+            <div class="livelli-allerta">
+                <strong>Livelli di allerta:</strong> Allerta 1: <span class="allerta1">4.00 m</span>; Allerta 2: <span
+                    class="allerta2">5.00 m</span>
+            </div>
             <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS01004875&title=&type=idro"
                 title="Monitoraggio stazione TOS01004875"></iframe>
         </div>
 
         <div class="grafico" id="grafico4" data-id="TOS15004682" data-title="Monitoraggio stazione TOS15004682">
             <h2>
-                Grafico 4: Monitoraggio stazione TOS15004682
+                Monitoraggio stazione TOS15004682 (Arno a Firenze zona Uffizi)
                 <button onclick="impostaPreferito('grafico4')">Imposta come preferito</button>
             </h2>
+            <div class="livelli-allerta">
+                <strong>Livelli di allerta:</strong> Allerta 1: <span class="allerta1">3.00 m</span>; Allerta 2: <span
+                    class="allerta2">5.50 m</span>
+            </div>
             <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS15004682&title=&type=idro"
                 title="Monitoraggio stazione TOS15004682"></iframe>
         </div>
 
         <div class="grafico" id="grafico5" data-id="TOS01004811" data-title="Monitoraggio stazione TOS01004811">
             <h2>
-                Grafico 5: Monitoraggio stazione TOS01004811
+                Monitoraggio stazione TOS01004811 (Arno a Ponte a Signa FI)
                 <button onclick="impostaPreferito('grafico5')">Imposta come preferito</button>
             </h2>
+            <div class="livelli-allerta">
+                <strong>Livelli di allerta:</strong> Allerta 1: <span class="allerta1">5.00 m</span>; Allerta 2: <span
+                    class="allerta2">7.50 m</span>
+            </div>
             <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=TOS01004811&title=&type=idro"
                 title="Monitoraggio stazione TOS01004811"></iframe>
         </div>
@@ -221,6 +255,10 @@
             const id = graficoOriginale.dataset.id;
             const titolo = graficoOriginale.dataset.title;
 
+            // Verifica se ci sono livelli di allerta
+            const livelliElement = graficoOriginale.querySelector('.livelli-allerta');
+            const livelliHtml = livelliElement ? livelliElement.outerHTML : '';
+
             // Crea il contenuto del grafico preferito
             const preferito = `
                 <div class="grafico" id="preferito">
@@ -228,6 +266,7 @@
                         Preferito: ${titolo}
                         <button onclick="rimuoviPreferito()">Rimuovi dai preferiti</button>
                     </h2>
+                    ${livelliHtml}
                     <iframe src="https://cfr.toscana.it/monitoraggio/dettaglio.php?id=${id}&title=&type=idro" title="${titolo}"></iframe>
                 </div>
             `;
